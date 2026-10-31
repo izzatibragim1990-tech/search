@@ -1,0 +1,248 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	min-height: 100vh;
+	background-color: #0d3b66;
+	color: white;
+	font-family: sans-serif;
+}
+
+/* ===== NAVBAR ===== */
+
+.navbar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 20px;
+	padding: 1rem 2rem;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.logo {
+	display: flex;
+	gap: 20px;
+	align-items: center;
+}
+
+.icon_git {
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+	border: 4px solid #3066be;
+}
+
+.name_title {
+	margin: 0;
+	font-size: 26px;
+}
+
+form {
+	display: flex;
+	gap: 20px;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.repo_1 {
+	margin: 0;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.count_repo {
+	width: 40px;
+	height: 40px;
+	margin: 0;
+	background-color: #3066be;
+	border-radius: 50%;
+	display: none; /* JS "grid" qiladi */
+	place-items: center;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.input_user {
+	width: 400px;
+	max-width: 100%;
+	height: 50px;
+	background: rgba(255, 255, 255, 0.08);
+	font-size: 20px;
+	border-radius: 20px;
+	border: 2px solid #3066be;
+	padding: 0 20px;
+	color: white;
+	outline: none;
+	transition: border-color 0.2s;
+}
+
+.input_user::placeholder {
+	color: rgba(255, 255, 255, 0.6);
+}
+
+.input_user:focus {
+	border-color: #6ea8ff;
+}
+
+.profile_img {
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	border: 4px solid #3066be;
+	display: none; /* JS "block" qiladi */
+	cursor: pointer;
+}
+
+/* ===== USER + REPOS ===== */
+
+.information {
+	display: flex;
+	gap: 40px;
+	padding: 2rem;
+}
+
+.user {
+	flex-shrink: 0;
+	width: 320px;
+	text-align: center;
+}
+
+.user_img {
+	width: 260px;
+	height: 260px;
+	max-width: 100%;
+	border-radius: 50%;
+	border: 10px solid #3066be;
+	object-fit: cover;
+}
+
+.user_name {
+	margin: 16px 0 4px;
+	font-size: 30px;
+}
+
+.username {
+	margin: 0 0 10px;
+	font-weight: normal;
+	color: rgba(255, 255, 255, 0.75);
+}
+
+.bio {
+	margin: 0 0 10px;
+	font-weight: normal;
+}
+
+.follow {
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+}
+
+.fol {
+	cursor: pointer;
+}
+
+.fol:hover {
+	color: #6ea8ff;
+}
+
+.repos {
+	flex: 1;
+	display: flex;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	gap: 12px;
+	max-height: calc(100vh - 180px);
+	overflow-y: auto;
+}
+
+.title_repo {
+	width: 100%;
+	margin: 0 0 10px;
+	font-size: 32px;
+}
+
+.repoChild {
+	background-color: #3066be;
+	color: white;
+	text-decoration: none;
+	border-radius: 20px;
+	font-size: 18px;
+	padding: 8px 16px;
+	transition: background-color 0.2s;
+}
+
+.repoChild:hover {
+	background-color: #4a83e0;
+}
+
+/* ===== NOT FOUND (modal) ===== */
+
+.not_found {
+	position: fixed;
+	inset: 0;
+	display: none; /* JS "flex" qiladi */
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+	background: rgba(0, 0, 0, 0.6);
+	backdrop-filter: blur(8px);
+	text-align: center;
+	padding: 1rem;
+}
+
+.error {
+	margin: 0;
+	font-size: 40px;
+	font-weight: bold;
+}
+
+.btn {
+	width: 120px;
+	height: 50px;
+	background: #3066be;
+	font-size: 24px;
+	border-radius: 20px;
+	border: 2px solid #3066be;
+	color: white;
+	cursor: pointer;
+}
+
+.btn:hover {
+	border-color: white;
+}
+
+/* ===== MOBIL ===== */
+
+@media (max-width: 800px) {
+	.navbar {
+		padding: 1rem;
+	}
+
+	.information {
+		flex-direction: column;
+		align-items: center;
+		padding: 1rem;
+	}
+
+	.user {
+		width: 100%;
+	}
+
+	.repos {
+		max-height: none;
+		justify-content: center;
+	}
+
+	.title_repo {
+		text-align: center;
+	}
+
+	.error {
+		font-size: 28px;
+	}
+}

@@ -1,0 +1,76 @@
+(() => {
+  "use strict";
+  const e = document.querySelector(".name_title"),
+    r = document.querySelector(".count_repo"),
+    t = document.querySelector(".input_user"),
+    o = document.forms[0],
+    n = document.querySelector(".container"),
+    l = document.querySelector(".user_img"),
+    c = document.querySelector(".profile_img"),
+    s = document.querySelector(".user_name"),
+    u = document.querySelector(".username"),
+    i = document.querySelector(".bio"),
+    a = document.querySelector(".followers"),
+    m = document.querySelector(".following"),
+    d = document.querySelector(".not_found"),
+    p = document.querySelector(".btn"),
+    y = document.querySelector(".error"),
+    h = document.querySelector(".repos");
+  (o.addEventListener("submit", (o) => {
+    o.preventDefault();
+    const p = t.value;
+    p
+      ? ((r.style.display = "grid"),
+        (c.style.display = "block"),
+        fetch(`https://api.github.com/users/${p}`)
+          .then((e) => {
+            if (!e.ok) throw new Error("GitHub API topa olmadi");
+            return e.json();
+          })
+          .then((t) => {
+            (console.log("user = ", t),
+              (l.src = `${t.avatar_url}`),
+              (c.src = `${t.avatar_url}`),
+              (s.innerText = t.name),
+              (e.innerText = t.name),
+              (u.innerText = `@${t.login}`),
+              (i.innerText = t.bio),
+              (r.innerText = t.public_repos),
+              (a.innerText = `👥     ${t.followers} followers`),
+              (m.innerText = ` ✅    ${t.following} following`),
+              (h.innerHTML = ""));
+          })
+          .catch(() => {
+            ((d.style.display = "flex"),
+              (n.style.display = "none"),
+              (y.innerText = `not found this ${t.value} user`));
+          }),
+        fetch(`https://api.github.com/users/${p}/repos?per_page=100`)
+          .then((e) => {
+            if (!e.ok) throw new Error("GitHub API error");
+            return e.json();
+          })
+          .then((e) => {
+            console.log("repos = ", e);
+            const r = document.createElement("h1");
+            ((r.className = "title_repo"),
+              (r.innerText = "Repositories:"),
+              h.append(r));
+            for (let r = 0; r < e.length; r++) {
+              console.log(e[r].name);
+              const t = document.createElement("a");
+              ((t.href = e[r].html_url),
+                (t.className = "repoChild"),
+                (t.innerText = e[r].name),
+                h.appendChild(t));
+            }
+          })
+          .catch((e) => {
+            console.error("Error fetching user repositories:", e.message);
+          }))
+      : console.error("User input is empty");
+  }),
+    p.addEventListener("click", () => {
+      ((d.style.display = "none"), (n.style.display = "block"));
+    }));
+})();
